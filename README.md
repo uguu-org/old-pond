@@ -10,14 +10,14 @@ Created for [PlayJam 7](https://itch.io/jam/playjam-7) "Moon".
 
 ## Controls
 
-When crank is undocked: use **Crank** to set direction.
-When crank is docked: use **Left** or **Right** to set direction.
+When crank is undocked: use **Crank** to set direction.\
+When crank is docked: use **Left** or **Right** to set direction.\
 Press **A** or **B** or **Up** to jump.
 
 ## Options
 
-**Reset**: regenerate path and reset completion times.
-**Frog**: adjust frog speed and trajectory display.
+**Reset**: regenerate path and reset completion times.\
+**Frog**: adjust frog speed and trajectory display.\
 **Crickets**: adjust cricket volume.
 
 ## Assets
