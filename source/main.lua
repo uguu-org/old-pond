@@ -888,6 +888,11 @@ local function update_world()
 			end
 
 		elseif targets[i].state == LEAF_FLOATING then
+			-- The target that matches the frog progress is marked as floating,
+			-- even though frog may have already splashed down.  This means if
+			-- the user just misses a target, the intended target will still
+			-- show ripples because it's in LEAF_FLOATING state.  This is
+			-- considered a feature.
 			if i == target_index then
 				local f <const> = ((global_frames >> 2) & 7) + 8
 				world128_images:drawImage(targets[i].sprite + f, targets[i].x - 64, targets[i].y - 64)
