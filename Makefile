@@ -62,6 +62,14 @@ refresh_data:
 	cp -f $(data_dir)/card5.png $(source_dir)/launcher/card-highlighted/6.png
 	cp -f $(data_dir)/card6.png $(source_dir)/launcher/card-highlighted/7.png
 	cp -f $(data_dir)/card7.png $(source_dir)/launcher/card-highlighted/8.png
+	cp -f $(data_dir)/card8.png $(source_dir)/launcher/card-highlighted/9.png
+	cp -f $(data_dir)/card9.png $(source_dir)/launcher/card-highlighted/10.png
+	cp -f $(data_dir)/card10.png $(source_dir)/launcher/card-highlighted/11.png
+	cp -f $(data_dir)/card11.png $(source_dir)/launcher/card-highlighted/12.png
+	cp -f $(data_dir)/card12.png $(source_dir)/launcher/card-highlighted/13.png
+	cp -f $(data_dir)/card13.png $(source_dir)/launcher/card-highlighted/14.png
+	cp -f $(data_dir)/card14.png $(source_dir)/launcher/card-highlighted/15.png
+	cp -f $(data_dir)/card15.png $(source_dir)/launcher/card-highlighted/16.png
 	cp -f $(data_dir)/launcher0.png $(source_dir)/launcher/launchImages/1.png
 	cp -f $(data_dir)/launcher1.png $(source_dir)/launcher/launchImages/2.png
 	cp -f $(data_dir)/launcher2.png $(source_dir)/launcher/launchImages/3.png

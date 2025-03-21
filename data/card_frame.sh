@@ -17,27 +17,28 @@ FRAME=$3
 OUTPUT=$4
 
 # Set leaf placement.
-LEAF_CROP_X=$(($FRAME * 128))
+LEAF_CROP_X=0
 LEAF_CROP_Y=1408
 LEAF_CROP="128x100+$LEAF_CROP_X+$LEAF_CROP_Y"
 LEAF_CORNER_X=$((350 - 128))
 LEAF_CORNER_Y=$((155 - 100))
-LEAF_PLACE="128x100+$LEAF_CORNER_X+$LEAF_CORNER_Y"
+LEAF_DRIFT_Y=$(perl -e "print 4 - abs((int($FRAME / 2) & 7) - 4)")
+LEAF_PLACE="128x100+$LEAF_CORNER_X+$(($LEAF_CORNER_Y+$LEAF_DRIFT_Y))"
+RIPPLE_X=$((($FRAME % 8) * 128))
+RIPPLE_Y=$((($FRAME / 8) * 128 + 1792))
+RIPPLE_CROP="128x100+$RIPPLE_X+$RIPPLE_Y"
+RIPPLE_PLACE="128x100+$LEAF_CORNER_X+$LEAF_CORNER_Y"
 
 # Set frog placement.
 #
-# Note that the input crop region for the frog is adjusted to compensate
-# for the vertical leaf offsets: 1, 2, 3, 4, 3, 2, 1, 0
-#
 # We are using sprite #13, which has a jump vector of (-92,-19).
-FROG_DY=$(perl -e "print 4 - abs((($FRAME + 1) & 7) - 4)")
 FROG_CROP_X=0
-FROG_CROP_Y=$((1792-$FROG_DY))
+FROG_CROP_Y=1792
 FROG_CROP="128x100+$FROG_CROP_X+$FROG_CROP_Y"
 FROG_PLACE="$LEAF_PLACE"
 
 # Set moon placement.
-MOON_CROP_X=$(($FRAME*128))
+MOON_CROP_X=$((($FRAME / 2) * 128))
 MOON_CROP_Y=2560
 MOON_CROP="64x32+$MOON_CROP_X+$MOON_CROP_Y"
 MOON_CORNER_X=$(($LEAF_CORNER_X + 64 - 92 - 32))
@@ -53,6 +54,7 @@ TITLE_PLACE="160x90+4+4"
 exec convert \
    -size 350x155 "xc:#000000" -colorspace Gray -depth 8 \
    "(" "$WORLD_INPUT" -crop "$MOON_CROP" +repage -geometry "$MOON_PLACE" ")" -composite \
+   "(" "$WORLD_INPUT" -crop "$RIPPLE_CROP" +repage -geometry "$RIPPLE_PLACE" ")" -composite \
    "(" "$WORLD_INPUT" -crop "$LEAF_CROP" +repage -geometry "$LEAF_PLACE" ")" -composite \
    "(" "$FROG_INPUT" -crop "$FROG_CROP" +repage -geometry "$FROG_PLACE" ")" -composite \
    "(" "$WORLD_INPUT" -crop "$TITLE_CROP" +repage -geometry "$TITLE_PLACE" ")" -composite \

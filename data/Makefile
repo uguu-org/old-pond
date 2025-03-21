@@ -27,6 +27,14 @@ targets = \
 	card5.png \
 	card6.png \
 	card7.png \
+	card8.png \
+	card9.png \
+	card10.png \
+	card11.png \
+	card12.png \
+	card13.png \
+	card14.png \
+	card15.png \
 	launcher0.png \
 	launcher1.png \
 	launcher2.png \
@@ -72,7 +80,7 @@ frog-table-128-96.png: t_frog.png crop_table.exe optimize_png.pl
 	./crop_table.exe 128 128 128 96 0 0 < $< | perl optimize_png.pl > $@
 
 world1-table-128-128.png: t_world.png t_world_trees.png optimize_png.pl
-	convert t_world_trees.png "(" $< -crop "1024x1024+0+1280" +repage ")" -append png:- | perl optimize_png.pl > $@
+	convert t_world_trees.png "(" $< -crop "1024x768+0+1280" +repage ")" -append png:- | perl optimize_png.pl > $@
 
 world2-table-64-64.png: t_world.png crop_table.exe optimize_png.pl
 	convert $< -crop "1024x256+0+2304" png:- | ./crop_table.exe 128 128 64 64 0 0 | perl optimize_png.pl > $@
@@ -140,6 +148,30 @@ card6.png: t_card6.png optimize_png.pl
 	perl optimize_png.pl $< > $@
 
 card7.png: t_card7.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card8.png: t_card8.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card9.png: t_card9.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card10.png: t_card10.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card11.png: t_card11.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card12.png: t_card12.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card13.png: t_card13.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card14.png: t_card14.png optimize_png.pl
+	perl optimize_png.pl $< > $@
+
+card15.png: t_card15.png optimize_png.pl
 	perl optimize_png.pl $< > $@
 
 launcher0.png: t_launcher0.png optimize_png.pl
@@ -246,6 +278,30 @@ t_card6.png: card_frame.sh t_world.png t_frog.png
 
 t_card7.png: card_frame.sh t_world.png t_frog.png
 	bash $^ 7 $@
+
+t_card8.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 8 $@
+
+t_card9.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 9 $@
+
+t_card10.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 10 $@
+
+t_card11.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 11 $@
+
+t_card12.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 12 $@
+
+t_card13.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 13 $@
+
+t_card14.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 14 $@
+
+t_card15.png: card_frame.sh t_world.png t_frog.png
+	bash $^ 15 $@
 
 t_launcher0.png: launcher_jump_frame.sh t_world.png t_frog.png
 	bash $^ 0 $@

@@ -112,8 +112,21 @@ local STAR_VARIATIONS <const> =
 	{12, 12, 12, 12, 13, 13, 14, 14},
 }
 
--- Base sprite index for leaf sprites.  Leaves come in sets of 16.
+-- Base sprite index for leaf sprites.
+--
+-- Leaves come in sets of 8.  The first one is the one used for steady state,
+-- remaining 7 are used for fade in and fade out animations.
 local LEAF_SPRITE_INDEX_BASE <const> = 65
+
+-- Base sprite index for ripple sprites.  16 total.
+--
+-- We used to bake the ripples into the leaf sprites, the thought was that
+-- different leaves might generate different ripples.  But it didn't look all
+-- that great and we ended up using the same set of elliptical ripples for
+-- all leaves.  Since all ripples look the same, there was no need to bake
+-- them into the sprites, so now we have a separate set of sprites for the
+-- ripples.
+local RIPPLE_SPRITE_INDEX_BASE <const> = 97
 
 -- Leaf states.
 local LEAF_INVISIBLE <const> = 0
@@ -126,8 +139,9 @@ local LEAF_GOAL <const> = 4
 -- these keys:
 --   x, y = target position.
 --   d = direction needed to leave current target to reach next target.
---   sprite = LEAF_SPRITE_INDEX_BASE + 16*{0,1,2,3}.
---   frame = animation frame index (0..31).
+--   sprite = LEAF_SPRITE_INDEX_BASE + 8*{0,1,2,3}.
+--   frame = leaf animation frame index (0..31).
+--   ripple_frame = ripple animation frame index (0..31).
 --	  state = one of leaf states above.
 --   note = note to be played when frog is leaving this area, in number
 --          of semitones.
@@ -409,7 +423,7 @@ local function allocate_targets()
 		else
 			targets[o] =
 			{
-				sprite = LEAF_SPRITE_INDEX_BASE + rand(0, 3) * 16,
+				sprite = LEAF_SPRITE_INDEX_BASE + rand(0, 3) * 8,
 				note = song_sequence[i],
 				line = current_line
 			}
@@ -734,16 +748,27 @@ local function draw_stars()
 	star_offset_x = update_offset_component(dx, star_offset_x)
 	star_offset_y = update_offset_component(dy, star_offset_y)
 
-	local f <const> = ((global_frames >> 3) & 7) + 1
+	-- Select which frames to display.
+	--
+	-- We have two layers of stars with 8 frames each, and we increment the
+	-- frames for each layer separately, alternating the updates every 4 frames.
+	-- This means within a 64 frame loop, we get 16 variations of background
+	-- stars updating every 4 frames.
+	--
+	-- We used to update both layers simultaneously, resulting in the same
+	-- 64 frame loop but with only 8 variations.  This seems like a waste
+	-- when we have two separate layers, so now we stagger the updates.
+	local f1 <const> = ((global_frames >> 3) & 7) + 1
+	local f2 <const> = (((global_frames + 4) >> 3) & 7) + 1
 	for ox = 0, 512, 512 do
 		if star_offset_x + dx + ox >= 400 then
 			break
 		end
-		stars[f][1]:draw(star_offset_x + ox, star_offset_y)
-		stars[f][2]:draw(star_offset_x + ox - 17, star_offset_y - 17)
+		stars[f1][1]:draw(star_offset_x + ox, star_offset_y)
+		stars[f2][2]:draw(star_offset_x + ox - 17, star_offset_y - 17)
 		if star_offset_y + dy + 512 < 240 then
-			stars[f][1]:draw(star_offset_x + ox, star_offset_y + 512)
-			stars[f][2]:draw(star_offset_x + ox - 17, star_offset_y + 512 - 17)
+			stars[f1][1]:draw(star_offset_x + ox, star_offset_y + 512)
+			stars[f2][2]:draw(star_offset_x + ox - 17, star_offset_y + 512 - 17)
 		end
 	end
 end
@@ -814,6 +839,7 @@ local function transition_to_starting_state()
 		assert(targets[i])
 		targets[i].state = LEAF_INVISIBLE
 		targets[i].frame = 0
+		targets[i].ripple_frame = 0
 	end
 	target_index = 1
 
@@ -840,6 +866,11 @@ local function debug_draw_target_bounding_boxes()
 	return true
 end
 
+-- Compute vertical shift for floating leaves when frog is sitting on top.
+local function floating_offset()
+	return 4 - abs(((global_frames >> 2) & 7) - 4)
+end
+
 -- Update world animation.
 local function update_world()
 	assert(targets)
@@ -859,9 +890,55 @@ local function update_world()
 				assert(debug_log(string.format("Show [%d] (line %d) at (%d,%d)", i, targets[i].line, targets[i].x, targets[i].y)))
 				targets[i].state = LEAF_FADE_IN
 				targets[i].frame = 0
+				targets[i].ripple_frame = 0
 			end
 			if targets[i].line ~= current_line then
 				break
+			end
+		end
+	end
+
+	-- Draw and animate ripples.
+	for i = 1, #targets do
+		assert(targets[i])
+		local r <const> = targets[i].ripple_frame
+		if r > 0 then
+			-- Ripple is currently being animated, although it may not be visible
+			-- until it reached frame 2.
+			if r > 1 then
+				-- Frames 2..31
+				local f <const> = (r >> 1) + RIPPLE_SPRITE_INDEX_BASE
+				assert(f >= RIPPLE_SPRITE_INDEX_BASE)
+				assert(f < RIPPLE_SPRITE_INDEX_BASE + 16)
+				world128_images:drawImage(f, targets[i].x - 64, targets[i].y - 64)
+			end
+
+			-- Keep animating this ripple until it reaches zero.
+			--
+			-- Note that ripple animation continues even after frog has already
+			-- left the target, and there may be multiple concurrent ripple
+			-- animations in progress.  Previously, we have at most one ripple
+			-- that is being animated based on which target the frog is currently
+			-- sitting on, but that leads to an abrupt cut in animation when
+			-- frog jumps from one target to the next.  By keeping track of
+			-- ripple states on a per-leaf basis, we are able to animate the
+			-- ripples individually.
+			targets[i].ripple_frame = (r + 1) & 31
+
+		else
+			-- Ripple is currently invisible (frame 0).  If current target matches
+			-- frog progress, we will increment the frame counter here so that
+			-- ripple animation will start.
+			--
+			-- We only check for matching indices to decide whether to start
+			-- ripple animation or not, even though frog may have already
+			-- splashed down.  This means if the user just misses a target, the
+			-- intended target will still show ripples.  This is considered a
+			-- feature.
+			--
+			-- Final target (moon) is not eligible for ripples.
+			if i == target_index and i < #targets then
+				targets[i].ripple_frame = 1
 			end
 		end
 	end
@@ -870,8 +947,19 @@ local function update_world()
 	for i = 1, #targets do
 		assert(targets[i])
 		if targets[i].state == LEAF_FADE_IN then
+			-- Apply vertical drift if frog is sitting on current target.  This
+			-- happens at the start of the game when all targets of the first
+			-- line is being faded in, including the one that the frog is
+			-- sitting on.
+			--
+			-- If we don't apply this drift, player will observe a sudden drop
+			-- of a few pixels at the start of the game.
 			local f <const> = (15 - targets[i].frame) >> 1
-			world128_images:drawImage(targets[i].sprite + f, targets[i].x - 64, targets[i].y - 64)
+			if i == target_index then
+				world128_images:drawImage(targets[i].sprite + f, targets[i].x - 64, targets[i].y - 64 + floating_offset())
+			else
+				world128_images:drawImage(targets[i].sprite + f, targets[i].x - 64, targets[i].y - 64)
+			end
 			targets[i].frame += 1
 			if targets[i].frame == 16 then
 				targets[i].frame = 0
@@ -888,15 +976,11 @@ local function update_world()
 			end
 
 		elseif targets[i].state == LEAF_FLOATING then
-			-- The target that matches the frog progress is marked as floating,
-			-- even though frog may have already splashed down.  This means if
-			-- the user just misses a target, the intended target will still
-			-- show ripples because it's in LEAF_FLOATING state.  This is
-			-- considered a feature.
 			if i == target_index then
-				local f <const> = ((global_frames >> 2) & 7) + 8
-				world128_images:drawImage(targets[i].sprite + f, targets[i].x - 64, targets[i].y - 64)
+				-- Draw oscillating leaf.
+				world128_images:drawImage(targets[i].sprite, targets[i].x - 64, targets[i].y - 64 + floating_offset())
 			else
+				-- Draw static leaf.
 				world128_images:drawImage(targets[i].sprite, targets[i].x - 64, targets[i].y - 64)
 			end
 		end
@@ -982,16 +1066,9 @@ local function check_landing()
 	set_next_game_state(game_splash)
 end
 
--- Draw idle frog.
+-- Draw idle frog, with oscillating vertical movement to match drifting leaves.
 local function draw_frog()
-	if targets[target_index].state == LEAF_FLOATING then
-		-- Since the leaf that the frog is standing on is bouncing, we will
-		-- adjust the frog's position to match.
-		local y <const> = frog_y - 60 - abs((((global_frames >> 2) + 1) & 7) - 4)
-		frog_images:drawImage((frog_direction << 3) + 1, frog_x - 64, y)
-	else
-		frog_images:drawImage((frog_direction << 3) + 1, frog_x - 64, frog_y - 64)
-	end
+	frog_images:drawImage((frog_direction << 3) + 1, frog_x - 64, frog_y - 64 + floating_offset())
 end
 
 -- Handle input and update frog states.
@@ -1155,17 +1232,29 @@ game_starting = function()
 	if global_frames < 30 then
 		-- Scroll up and fade out title background elements.
 		--
-		-- Note the bitmask to force scrolling in 2 pixel chunks.  We need this
-		-- here because the trees use ordered dithering, and when combined with
+		-- Note that the scroll amount is a multiple of 2, which causes the
+		-- trees to be aligned to even pixels.  We need this because the trees
+		-- use ordered dithering, and when the scrolling operation combined with
 		-- the fade out effect (with setDitherPattern below), it produces an
 		-- undesirable shimmering effect.  Changing the dither type for the
 		-- fade out effect doesn't really help, the only thing that works is
 		-- to align pixels, as we have done here.
 		--
-		-- We don't do this in other places that calls setDrawOffset, because
+		-- Alternatively, we can scroll to an odd number of pixels and drop
+		-- the lowest bit.  But that causes a stutter effect: if the average
+		-- scroll amount is 5 pixels, the screen is jumping by 4 or 6 pixels
+		-- every other frame instead of a constant scroll amount on every frame.
+		--
+		-- Another alternative is to only align the trees, and scroll everything
+		-- else without alignment.  This causes the trees to go out of alignment
+		-- with the stars by up to 1 pixel.  This honestly isn't so noticeable,
+		-- but it seems like a silly complication to have when we can just
+		-- scroll by even number of pixels.
+		--
+		-- We are not so concerned about scroll alignment anywhere else because
 		-- in all other instances, everything on screen uses Floyd-Steinberg,
 		-- and aren't susceptible to the shimmering effect.
-		gfx.setDrawOffset(0, (global_frames * -5) & ~1)
+		gfx.setDrawOffset(0, global_frames * -6)
 		draw_title_background()
 		gfx.setColor(gfx.kColorBlack)
 		gfx.setDitherPattern((30 - global_frames) / 30, gfx.image.kDitherTypeBayer8x8)
@@ -1175,14 +1264,30 @@ game_starting = function()
 
 	-- Keep scrolling up a bit more so that the moon is no longer visible.
 	--
-	-- One thought is we want to scroll to frog's starting position, but
-	-- usually that starting position is far away, and we don't want to
-	-- scroll that much.
+	-- After 2 seconds, we would have scrolled 6*60 = 360 pixels, which is
+	-- more than the minimum 240 pixels needed.  If we did go with the
+	-- minimum, the moon should have been roughly just outside of the
+	-- current viewport, even though it most likely isn't.  By scrolling a
+	-- bit further, we create a better illusion of being lost somewhere in
+	-- the pond.
+	--
+	-- We could also scroll to the frog's real starting position and do away
+	-- with all these scrolling hacks, but usually the starting position is
+	-- far away, and we don't want to scroll that much.
 	if global_frames < 60 then
-		gfx.setDrawOffset(0, global_frames * -5)
+		gfx.setDrawOffset(0, global_frames * -6)
 		draw_stars()
 		draw_reflected_moon()
 		return
+	end
+
+	-- Skip forward a few frames so that global_frames is in sync with the
+	-- vertical drift cycle.  This is so that when we transition to game_loop
+	-- state and resets global_frames, we will not experience the sudden
+	-- shift in frog's vertical position.
+	if global_frames == 60 then
+		global_frames = 96
+		assert(floating_offset() == 0)
 	end
 
 	-- Compute draw offset to center the viewport on the frog, and update
@@ -1196,9 +1301,9 @@ game_starting = function()
 
 	-- Fade in frog.
 	draw_stars()
-	local a <const> = (global_frames - 60) / 15
+	local a <const> = (global_frames - 96) / 15
 	frog_images:getImage((frog_direction << 3) + 1):drawFaded(frog_x - 64, frog_y - 64, a, gfx.image.kDitherTypeBayer8x8)
-	if global_frames >= 75 then
+	if global_frames >= 111 then
 		set_next_game_state(game_loop)
 	end
 end

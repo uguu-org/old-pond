@@ -25,15 +25,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1"
-     inkscape:cx="365.5"
-     inkscape:cy="2191"
+     inkscape:cx="370.5"
+     inkscape:cy="2307"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showgrid="true"
-     inkscape:current-layer="layer25">
+     inkscape:current-layer="layer16">
     <inkscape:grid
        id="grid1"
        units="px"
@@ -26968,177 +26968,107 @@
        style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.75"
        id="path5"
        cx="192"
-       cy="576"
+       cy="960"
        rx="32"
        ry="16" />
     <ellipse
-       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.65"
-       id="ellipse5"
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.7"
+       id="ellipse1"
        cx="320"
-       cy="576"
+       cy="960"
+       rx="34"
+       ry="17" />
+    <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.65"
+       id="ellipse2"
+       cx="448"
+       cy="960"
        rx="36"
        ry="18" />
     <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.6"
+       id="ellipse3"
+       cx="576"
+       cy="960"
+       rx="38"
+       ry="19" />
+    <ellipse
        style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.55"
-       id="ellipse6"
-       cx="448"
-       cy="576"
+       id="ellipse4"
+       cx="704"
+       cy="960"
        rx="40"
        ry="20" />
     <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.5"
+       id="ellipse5"
+       cx="832"
+       cy="960"
+       rx="42"
+       ry="21" />
+    <ellipse
        style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.45"
-       id="ellipse7"
-       cx="576"
-       cy="576"
+       id="ellipse6"
+       cx="960"
+       cy="960"
        rx="44"
        ry="22" />
     <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.4"
+       id="ellipse7"
+       cx="64"
+       cy="1088"
+       rx="46"
+       ry="23" />
+    <ellipse
        style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.35"
        id="ellipse8"
-       cx="704"
-       cy="576"
+       cx="192"
+       cy="1088"
        rx="48"
        ry="24" />
     <ellipse
-       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.25"
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.3"
        id="ellipse9"
-       cx="832"
-       cy="576"
+       cx="320"
+       cy="1088"
+       rx="50"
+       ry="25" />
+    <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.25"
+       id="ellipse10"
+       cx="448"
+       cy="1088"
        rx="52"
        ry="26" />
     <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.2"
+       id="ellipse142"
+       cx="576"
+       cy="1088"
+       rx="54"
+       ry="27" />
+    <ellipse
        style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.15"
-       id="ellipse10"
-       cx="960"
-       cy="576"
+       id="ellipse143"
+       cx="704"
+       cy="1088"
        rx="56"
        ry="28" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#path5"
-       id="use16"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse5"
-       id="use17"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse6"
-       id="use21"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse7"
-       id="use22"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse8"
-       id="use23"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse9"
-       id="use24"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse10"
-       id="use25"
-       transform="translate(0,256)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#path5"
-       id="use26"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse5"
-       id="use27"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse6"
-       id="use28"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse7"
-       id="use29"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse8"
-       id="use30"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse9"
-       id="use31"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse10"
-       id="use32"
-       transform="translate(0,512)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#path5"
-       id="use33"
-       transform="translate(0,768)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse5"
-       id="use34"
-       transform="translate(0,768)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse6"
-       id="use35"
-       transform="translate(0,768)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse7"
-       id="use36"
-       transform="translate(0,768)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse8"
-       id="use37"
-       transform="translate(0,768)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse9"
-       id="use38"
-       transform="translate(0,768)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#ellipse10"
-       id="use39"
-       transform="translate(0,768)" />
+    <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.1"
+       id="ellipse144"
+       cx="832"
+       cy="1088"
+       rx="58"
+       ry="29" />
+    <ellipse
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.05"
+       id="ellipse145"
+       cx="960"
+       cy="1088"
+       rx="60"
+       ry="30" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -27147,7 +27077,8 @@
      sodipodi:insensitive="true">
     <g
        id="g184"
-       inkscape:label="leaf2">
+       inkscape:label="leaf2"
+       transform="translate(0,-128)">
       <path
          style="fill:url(#radialGradient173);stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
          d="m 27.961967,697.19746 c 3.715368,-0.0128 6.501393,1.54025 7.623168,5.0364 1.954845,4.44824 2.827074,6.28292 4.714431,9.296 2.011339,3.21101 5.822612,3.75478 8.570383,5.64749 2.789088,1.92117 8.222834,2.06972 11.302319,1.78719 3.149194,-0.28892 4.662323,0.25536 7.815795,-0.44793 2.884158,-0.64322 8.471461,-1.83598 11.133198,-3.23629 3.199823,-1.68339 6.404161,-2.77671 9.875271,-3.81187 2.936204,-0.87564 4.962475,-4.44747 7.770555,-5.42247 2.411028,-0.83714 3.502723,-1.82622 4.895893,-4.15816 0.69811,-1.16853 4.41298,-2.33554 2.25957,-2.01589 -3.06635,0.14572 -4.926128,0.76983 -9.536319,-1.10373 -2.633851,-1.07039 -3.174896,-4.14262 -6.320009,-4.91369 -3.452183,-0.84635 -6.75282,-3.17077 -10.243994,-3.79858 -2.033397,-0.36566 -6.772747,-1.03209 -9.259194,-1.31329 -3.196655,-0.36152 -7.492123,-0.21633 -10.68914,-0.37144 -2.443037,-0.11853 -7.188157,0.51429 -9.335837,1.39183 -2.504047,1.02315 -3.171781,3.49721 -5.873506,4.9965 -2.86644,1.5907 -5.440712,3.28062 -9.002837,3.14872 -0.942681,-0.59321 -3.461849,-1.07519 -5.044133,-1.37297 -0.609469,0.35706 -0.222473,0.15939 -0.655614,0.66218 z"
@@ -27239,7 +27170,8 @@
     </g>
     <g
        id="g185"
-       inkscape:label="leaf3">
+       inkscape:label="leaf3"
+       transform="translate(0,-256)">
       <path
          style="fill:url(#radialGradient176);stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
          d="m 36.146908,957.05758 c 3.402967,0.11282 5.083753,-3.14993 7.667973,-5.35351 2.924383,-2.49364 6.088191,-3.85827 9.50797,-5.15812 3.480906,-1.32309 7.274128,-1.81503 10.98156,-2.01346 4.41399,-0.23625 8.856548,0.8584 12.838265,2.58955 4.53886,1.97338 8.089401,5.57392 12.97784,7.23651 2.441309,0.83031 9.384568,1.78591 10.036564,2.58495 -2.23229,2.65729 -4.538219,6.93024 -7.243964,9.24118 -2.68895,2.2966 -4.998499,4.72009 -8.073383,6.38008 -3.294531,1.77856 -7.146618,1.40765 -10.676322,2.46074 -4.543047,1.35542 -9.309902,1.73088 -14.074472,1.06611 -5.216069,-0.72777 -9.997169,-2.78974 -14.93804,-4.38855 -4.059837,-1.31372 -7.760731,-4.10434 -9.140574,-8.28725 -2.145566,-6.50416 -5.927199,-5.90287 -8.630465,-8.89978 -0.187806,-0.64157 -0.283755,-1.12072 0.613055,-1.45742 4.095396,3.43055 4.803572,3.8879 8.153993,3.99897 z"
@@ -27281,7 +27213,8 @@
     </g>
     <g
        id="g186"
-       inkscape:label="leaf4">
+       inkscape:label="leaf4"
+       transform="translate(0,-384)">
       <path
          style="fill:url(#radialGradient179);stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
          d="m 94.196299,1213.1749 c -3.544627,0.9788 -5.310399,-5.3797 -8.256869,-6.3673 -3.109333,-1.0421 -6.20856,-4.7893 -9.942708,-4.5972 -2.630108,0.1353 -6.024496,-0.4442 -8.643806,-0.842 -3.012495,-0.4576 -8.787696,0.8407 -11.808623,0.9391 -4.476058,0.1458 -7.016927,2.2442 -10.728948,4.1762 -2.854144,1.4855 -3.264498,1.8998 -6.180059,3.4162 -3.123249,1.6244 -4.12246,4.9808 -5.429344,7.7374 -0.80804,1.7044 -2.226145,2.5744 -4.758056,3.4426 2.566656,0.2085 7.085151,-1.1036 9.433105,0.031 2.728986,1.3188 4.901593,3.4455 7.430978,5.0521 2.103989,1.3364 4.925826,2.2861 7.299279,3.4751 2.936284,1.471 6.027124,2.4909 9.259591,3.2056 3.620673,0.8005 7.346011,1.5245 10.948401,0.8042 2.997344,-0.5993 6.075116,-1.5795 8.593486,-3.3007 2.308937,-1.578 4.290739,-3.3477 6.488385,-5.3078 2.101828,-1.8747 2.89169,-4.3917 4.640278,-6.4149 1.21221,-5.3009 2.746238,-4.6347 5.125468,-6.0674 0.994515,-0.5989 2.292648,-2.0397 3.122323,-2.743 0.48155,-0.6286 0.23214,-0.2786 -0.23296,-1.003 0.0542,0.5423 -3.895994,3.3549 -6.359921,4.3638 z"
@@ -27529,204 +27462,6 @@
        id="use237"
        transform="translate(896)"
        style="opacity:0.125;filter:url(#filter272)" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer17"
-     inkscape:label="world - floating leaves (floating)"
-     sodipodi:insensitive="true">
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use193"
-       transform="translate(0,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use194"
-       transform="translate(128,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use195"
-       transform="translate(256,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use196"
-       transform="translate(384,132)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use197"
-       transform="translate(512,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use198"
-       transform="translate(640,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use199"
-       transform="translate(768,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g183"
-       id="use200"
-       transform="translate(896,128)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use208"
-       transform="translate(0,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use209"
-       transform="translate(128,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use210"
-       transform="translate(256,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use211"
-       transform="translate(384,132)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use212"
-       transform="translate(512,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use213"
-       transform="translate(640,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use214"
-       transform="translate(768,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g184"
-       id="use215"
-       transform="translate(896,128)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use223"
-       transform="translate(0,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use224"
-       transform="translate(128,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use225"
-       transform="translate(256,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use226"
-       transform="translate(384,132)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use227"
-       transform="translate(512,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use228"
-       transform="translate(640,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use229"
-       transform="translate(768,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g185"
-       id="use230"
-       transform="translate(896,128)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use238"
-       transform="translate(0,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use239"
-       transform="translate(128,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use240"
-       transform="translate(256,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use241"
-       transform="translate(384,132)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use242"
-       transform="translate(512,131)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use243"
-       transform="translate(640,130)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use244"
-       transform="translate(768,129)" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g186"
-       id="use245"
-       transform="translate(896,128)" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -28508,19 +28243,19 @@
          y="0"
          xlink:href="#path9"
          id="use18"
-         transform="translate(0,256)" />
+         transform="translate(0,128)" />
       <use
          x="0"
          y="0"
          xlink:href="#path9"
          id="use19"
-         transform="translate(0,512)" />
+         transform="translate(0,256)" />
       <use
          x="0"
          y="0"
          xlink:href="#path9"
          id="use20"
-         transform="translate(0,768)" />
+         transform="translate(0,384)" />
     </g>
     <rect
        style="fill:none;stroke:#00ff00;stroke-width:1"
