@@ -368,8 +368,8 @@ end
 -- Check if two targets are too close, returns true if so.
 --
 -- The scenario we want to avoid is having more than one target that is within
--- jumping distance of the current target, since that creates a confusion as
--- to what the correct direction would be.
+-- jumping distance of the current target, since that creates confusion as to
+-- what the correct direction would be.
 local function targets_too_close(i, j)
 	-- Consecutive targets are always within jumping distance, so this function
 	-- should not be used to check those.
@@ -879,8 +879,8 @@ local function update_world()
 		-- At the beginning of the game, or arriving at the start of the new
 		-- line.  Make all targets for the current line visible, plus first
 		-- target of the next line.  We need to make the first target of the
-		-- next line visible because we to know the direction for leaving the
-		-- last target in the current line.
+		-- next line visible because we need to know the direction for leaving
+		-- the last target in the current line.
 		--
 		-- Note that last target is never touched, because it's the position
 		-- of the moon.
